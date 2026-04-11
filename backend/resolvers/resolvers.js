@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import Employee from "../models/Employee.js";
 import cloudinary from "../config/cloudinary.js";
@@ -20,8 +21,15 @@ const resolvers = {
 
             if (!isMatch) throw new Error("Incorrect password");
 
+            const token = jwt.sign(
+                { id: user._id, username: user.username },
+                process.env.JWT_SECRET,
+                { expiresIn: "1d" }
+            );
+
             return {
                 message: "Login successful!",
+                token,
                 user
             };
         },
@@ -70,8 +78,15 @@ const resolvers = {
 
             await newUser.save();
 
+            const token = jwt.sign(
+                { id: newUser._id, username: newUser.username },
+                process.env.JWT_SECRET,
+                { expiresIn: "1d" }
+            );
+
             return {
                 message: "User successfully registered!",
+                token,
                 user: newUser
             };
         },

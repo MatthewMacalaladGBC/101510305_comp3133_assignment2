@@ -27,6 +27,7 @@ const typeDefs = gql`
 
     type AuthResponse {
         message: String!
+        token: String
         user: User
     }
 
