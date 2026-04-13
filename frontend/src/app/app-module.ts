@@ -23,7 +23,7 @@ import { inject } from '@angular/core';
     provideApollo(() => {
       const httpLink = inject(HttpLink);
       return {
-        link: httpLink.create({ uri: 'https://one01510305-comp3133-assignment2.onrender.com' }),
+        link: httpLink.create({ uri: 'https://one01510305-comp3133-assignment2.onrender.com/graphql' }),
         cache: new InMemoryCache(),
       };
     }),
