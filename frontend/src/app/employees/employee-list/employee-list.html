@@ -1,1 +1,112 @@
-<p>employee-list works!</p>
+<mat-toolbar color="primary" class="toolbar">
+    <span>Employee List</span>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="logout()" title="Logout">
+        <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div class="page-content">
+
+    <!-- Search bar -->
+    <mat-card class="search-card">
+        <mat-card-title>Filter Employee List</mat-card-title>
+        <mat-card-content class="search-row">
+            <mat-form-field appearance="outline" class="search-field">
+                <mat-label>Department</mat-label>
+                <input matInput [value]="searchDept" (input)="searchDept = $any($event.target).value" placeholder="e.g. Engineering" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="search-field">
+                <mat-label>Designation</mat-label>
+                <input matInput [value]="searchDesig" (input)="searchDesig = $any($event.target).value" placeholder="e.g. Manager" />
+            </mat-form-field>
+
+            <div class="search-actions">
+                <button mat-raised-button color="primary" (click)="search()">
+                <mat-icon>search</mat-icon> Search
+                </button>
+                <button mat-raised-button color="primary" (click)="clearSearch()">Clear</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Add button -->
+    <div class="list-header">
+        <h2>Employees ({{ employees.length }})</h2>
+        <button mat-raised-button color="accent" routerLink="/employees/add">
+            Add Employee
+        </button>
+    </div>
+
+    @if (error) {
+        <p class="error-msg">{{ error }}</p>
+    }
+
+    @if (loading) {
+        <p class="loading-msg">Loading...</p>
+    }
+
+    @if (!loading) {
+        <div class="table-wrapper">
+        <table mat-table [dataSource]="employees" class="employee-table">
+
+            <!-- Name column -->
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let e">{{ e.first_name }} {{ e.last_name }}</td>
+            </ng-container>
+
+            <!-- Email column -->
+            <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let e">{{ e.email }}</td>
+            </ng-container>
+
+            <!-- Department column -->
+            <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef>Department</th>
+            <td mat-cell *matCellDef="let e">{{ e.department }}</td>
+            </ng-container>
+
+            <!-- Designation column -->
+            <ng-container matColumnDef="designation">
+            <th mat-header-cell *matHeaderCellDef>Designation</th>
+            <td mat-cell *matCellDef="let e">{{ e.designation }}</td>
+            </ng-container>
+
+            <!-- Salary column -->
+            <ng-container matColumnDef="salary">
+            <th mat-header-cell *matHeaderCellDef>Salary</th>
+            <td mat-cell *matCellDef="let e">{{ e.salary | currency }}</td>
+            </ng-container>
+
+            <!-- Actions column -->
+            <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let e" class="actions-cell">
+                <button mat-raised-button class="btn-view" [routerLink]="['/employees', e.id]" title="View">
+                View
+                </button>
+                <button mat-raised-button class="btn-edit" [routerLink]="['/employees', e.id, 'edit']" title="Edit">
+                Edit
+                </button>
+                <button mat-raised-button class="btn-delete" (click)="deleteEmployee(e.id)" title="Delete">
+                Delete
+                </button>
+            </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" appHighlight></tr>
+
+            <!-- Empty state -->
+            <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell no-data" [attr.colspan]="displayedColumns.length">No employees found.</td>
+            </tr>
+
+        </table>
+        </div>
+    }
+
+</div>

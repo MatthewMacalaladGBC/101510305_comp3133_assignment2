@@ -1,0 +1,102 @@
+.page-content {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.page-header h2 {
+  margin: 0;
+}
+
+.employee-form {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.form-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-row {
+  display: flex;
+  gap: 16px;
+}
+
+.field-row mat-form-field {
+  flex: 1;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.photo-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 180px;
+  padding-top: 4px;
+}
+
+.photo-label {
+  margin: 0;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+}
+
+.photo-preview {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.photo-placeholder {
+  width: 160px;
+  height: 160px;
+  border-radius: 8px;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+}
+
+.photo-placeholder mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #ccc;
+}
+
+.upload-btn {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.server-error {
+  color: #f44336;
+  margin: 12px 0 0;
+}

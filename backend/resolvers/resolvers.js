@@ -50,8 +50,8 @@ const resolvers = {
             if (!designation && !department) throw new Error("Provide a designation or department");
 
             const filter = {};
-            if (designation) filter.designation = designation;
-            if (department) filter.department = department;
+            if (designation) filter.designation = { $regex: designation, $options: 'i' };
+            if (department) filter.department = { $regex: department, $options: 'i' };
 
             return await Employee.find(filter);
         }

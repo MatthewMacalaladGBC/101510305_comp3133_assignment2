@@ -1,0 +1,120 @@
+.page-content {
+  max-width: 800px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.page-header h2 {
+  margin: 0;
+}
+
+.detail-card {
+  width: 100%;
+}
+
+.detail-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Photo column */
+.photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 180px;
+}
+
+.photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.photo-placeholder {
+  width: 180px;
+  height: 180px;
+  border-radius: 8px;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+}
+
+.photo-placeholder mat-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: #ccc;
+}
+
+.employee-name {
+  margin: 4px 0 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.employee-title {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Fields column */
+.fields-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 12px;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.54);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.field-value {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 16px;
+}
+
+.loading-msg {
+  color: #888;
+  text-align: center;
+  padding: 32px;
+}
+
+.error-msg {
+  color: #f44336;
+}

@@ -1,0 +1,100 @@
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.page-content {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.search-card {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.search-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.search-field {
+  flex: 1;
+  min-width: 180px;
+}
+
+.search-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.list-header h2 {
+  margin: 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.employee-table {
+  width: 100%;
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.no-data {
+  text-align: center;
+  padding: 32px;
+  color: #888;
+}
+
+.error-msg {
+  color: #f44336;
+  margin-bottom: 12px;
+}
+
+.loading-msg {
+  color: #888;
+  text-align: center;
+  padding: 32px;
+}
+
+.btn-view { 
+  background-color: #317ace !important;
+  color: white !important; 
+  margin: 2px;
+}
+
+.btn-edit {
+  background-color: #4a9f4e !important;
+  color: white !important;
+  margin: 2px;
+}
+
+.btn-delete {
+  background-color: #c62828 !important;
+  color: white !important;
+  margin: 2px;
+}

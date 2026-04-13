@@ -1,1 +1,76 @@
-<p>employee-detail works!</p>
+<div class="page-content">
+  <div class="page-header">
+    <button mat-icon-button (click)="goBack()" title="Back to list">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Employee Details</h2>
+  </div>
+
+  @if (loading) {
+    <p class="loading-msg">Loading...</p>
+  }
+
+  @if (error) {
+    <p class="error-msg">{{ error }}</p>
+  }
+
+  @if (employee) {
+    <mat-card class="detail-card">
+      <mat-card-content class="detail-layout">
+
+        <!-- Photo + name -->
+        <div class="photo-section">
+          @if (employee.employee_photo) {
+            <img [src]="employee.employee_photo" class="photo" alt="Profile photo" />
+          } @else {
+            <div class="photo-placeholder">
+              <mat-icon>person</mat-icon>
+            </div>
+          }
+          <p class="employee-name">{{ employee.first_name }} {{ employee.last_name }}</p>
+          <p class="employee-title">{{ employee.designation }}</p>
+        </div>
+
+        <!-- Detail fields -->
+        <div class="fields-section">
+          <div class="field-group">
+            <span class="field-label">Email</span>
+            <span class="field-value">{{ employee.email }}</span>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">Department</span>
+            <span class="field-value">{{ employee.department }}</span>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">Designation</span>
+            <span class="field-value">{{ employee.designation }}</span>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">Salary</span>
+            <span class="field-value">{{ employee.salary | currency }}</span>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">Gender</span>
+            <span class="field-value">{{ employee.gender | defaultValue:'Not specified' }}</span>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">Date of Joining</span>
+            <span class="field-value">{{ employee.date_of_joining | date:'mediumDate' }}</span>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-actions class="card-actions">
+        <button mat-raised-button color="primary" (click)="goEdit()">
+          <mat-icon>edit</mat-icon> Edit Employee
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  }
+</div>

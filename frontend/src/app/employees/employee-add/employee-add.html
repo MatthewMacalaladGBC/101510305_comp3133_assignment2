@@ -1,1 +1,135 @@
-<p>employee-add works!</p>
+<div class="page-content">
+  <div class="page-header">
+    <button mat-icon-button routerLink="/employees" title="Back to list">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Add Employee</h2>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()" class="employee-form">
+
+        <!-- Left column: fields -->
+        <div class="form-fields">
+
+          <div class="field-row">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="first_name" />
+              @if (f['first_name'].invalid && f['first_name'].touched) {
+                <mat-error>First name is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="last_name" />
+              @if (f['last_name'].invalid && f['last_name'].touched) {
+                <mat-error>Last name is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" />
+            @if (f['email'].touched) {
+              @if (f['email'].hasError('required')) {
+                <mat-error>Email is required</mat-error>
+              } @else if (f['email'].hasError('email')) {
+                <mat-error>Enter a valid email address</mat-error>
+              }
+            }
+          </mat-form-field>
+
+          <div class="field-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Department</mat-label>
+              <input matInput formControlName="department" />
+              @if (f['department'].invalid && f['department'].touched) {
+                <mat-error>Department is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Designation</mat-label>
+              <input matInput formControlName="designation" />
+              @if (f['designation'].invalid && f['designation'].touched) {
+                <mat-error>Designation is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="field-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Salary</mat-label>
+              <span matTextPrefix>$&nbsp;</span>
+              <input matInput type="number" formControlName="salary" min="1000" />
+              @if (f['salary'].touched) {
+                @if (f['salary'].hasError('required')) {
+                  <mat-error>Salary is required</mat-error>
+                } @else if (f['salary'].hasError('min')) {
+                  <mat-error>Salary must be at least $1,000</mat-error>
+                }
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Gender</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option value="">— None —</mat-option>
+                @for (g of genderOptions; track g) {
+                  <mat-option [value]="g">{{ g }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Date of Joining</mat-label>
+            <input matInput type="date" formControlName="date_of_joining" />
+            @if (f['date_of_joining'].invalid && f['date_of_joining'].touched) {
+              <mat-error>Date of joining is required</mat-error>
+            }
+          </mat-form-field>
+
+        </div>
+
+        <!-- Right column: photo -->
+        <div class="photo-column">
+          <p class="photo-label">Profile Photo</p>
+
+          @if (photoPreview) {
+            <img [src]="photoPreview" class="photo-preview" alt="Preview" />
+            <button mat-stroked-button type="button" color="warn" (click)="removePhoto()">
+              Remove
+            </button>
+          } @else {
+            <div class="photo-placeholder">
+              <mat-icon>person</mat-icon>
+            </div>
+          }
+
+          <button mat-stroked-button type="button" (click)="fileInput.click()" class="upload-btn">
+            <mat-icon>upload</mat-icon> Choose Photo
+          </button>
+          <input #fileInput type="file" accept="image/*" (change)="onFileChange($event)" hidden />
+        </div>
+
+      </form>
+
+      @if (serverError) {
+        <p class="server-error">{{ serverError }}</p>
+      }
+
+      <div class="form-actions">
+        <button mat-stroked-button type="button" routerLink="/employees">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="loading" (click)="submit()">
+          {{ loading ? 'Saving...' : 'Add Employee' }}
+        </button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
